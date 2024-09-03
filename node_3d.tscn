@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://dqu6kq0q5e5ml"]
+
+[ext_resource type="Texture2D" uid="uid://c8qqw3577qlqf" path="res://art/1601.m10.i311.n029.S.c10.164511620 Seamless green grass vector pattern.jpg" id="2_t6vxn"]
+[ext_resource type="Script" path="res://player.gd" id="2_v3mu2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q0jvh"]
+albedo_texture = ExtResource("2_t6vxn")
+
+[sub_resource type="BoxMesh" id="BoxMesh_7lek2"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kf1ql"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1yhtg"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.42855, 0)
+material_override = SubResource("StandardMaterial3D_q0jvh")
+mesh = SubResource("BoxMesh_7lek2")
+surface_material_override/0 = SubResource("StandardMaterial3D_kf1ql")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.899992, 0.435907, 0, -0.435907, 0.899992, -0.750847, 2.39547, -0.580979)
+shadow_enabled = true
+
+[node name="Node3D" type="Node3D" parent="."]
+script = ExtResource("2_v3mu2")
+
+[node name="Player" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.102617, 0)
+mesh = SubResource("CapsuleMesh_1yhtg")
+skeleton = NodePath("../..")
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.869245, 0.494382, 0, -0.494382, 0.869245, 0, 2.44791, 4.54532)
